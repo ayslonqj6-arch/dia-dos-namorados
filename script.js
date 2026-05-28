@@ -14,10 +14,86 @@ const openButton = document.querySelector("#openButton");
 const intro = document.querySelector("#intro");
 const surprise = document.querySelector("#surprise");
 const hearts = document.querySelector(".hearts");
+const bgMusic = document.querySelector("#bgMusic");
+
+const prevBtn = document.querySelector("#prevBtn");
+const nextBtn = document.querySelector("#nextBtn");
+
+const fotos = [
+  {
+    foto: "imagens/foto1.jpg",
+    mensagem: "Cada detalhe seu deixa meu mundo mais bonito e meu coracao mais em paz.",
+  },
+  {
+    foto: "imagens/coracao1.svg",
+    mensagem: "Meu carinho por voce cresce nos pequenos momentos, nos sorrisos e nos sonhos que a gente guarda.",
+  },
+  {
+    foto: "imagens/coracao2.svg",
+    mensagem: "Voce e aquele amor que ilumina ate os dias mais simples, como se tudo ganhasse um brilho novo.",
+  },
+  {
+    foto: "imagens/coracao3.svg",
+    mensagem: "Se eu pudesse escrever uma cartinha todos os dias, em todas elas teria o mesmo segredo: eu amo voce.",
+  },
+  {
+    foto: "imagens/coracao4.svg",
+    mensagem: "Nosso amor tem esse jeitinho de abraco demorado: acolhe, acalma e faz o coracao sorrir.",
+  },
+];
+
+let fotoAtual = 0;
+let animationTimer;
+let isTransitioning = false;
+
+const fotoParam = params.get("foto");
+const mensagemParam = params.get("mensagem");
+const albumFotos = fotoParam
+  ? [{ foto: fotoParam, mensagem: mensagemParam || DEFAULTS.mensagem }]
+  : fotos;
 
 personName.textContent = params.get("nome") || DEFAULTS.nome;
-messageText.textContent = params.get("mensagem") || DEFAULTS.mensagem;
-personPhoto.src = params.get("foto") || DEFAULTS.foto;
+
+function atualizarAlbum() {
+  const itemAtual = albumFotos[fotoAtual] || {
+    foto: DEFAULTS.foto,
+    mensagem: DEFAULTS.mensagem,
+  };
+
+  personPhoto.src = itemAtual.foto;
+  messageText.textContent = mensagemParam || itemAtual.mensagem;
+}
+
+atualizarAlbum();
+
+albumFotos.forEach((item) => {
+  const image = new Image();
+  image.src = item.foto;
+});
+
+function trocarFoto(direction) {
+  if (albumFotos.length <= 1 || isTransitioning) return;
+
+  isTransitioning = true;
+  fotoAtual = (fotoAtual + direction + albumFotos.length) % albumFotos.length;
+  personPhoto.classList.add("is-fading");
+
+  window.setTimeout(() => {
+    atualizarAlbum();
+    personPhoto.classList.remove("is-fading");
+    personPhoto.classList.add("is-changing");
+    window.clearTimeout(animationTimer);
+    animationTimer = window.setTimeout(() => {
+      personPhoto.classList.remove("is-changing");
+      isTransitioning = false;
+    }, 900);
+  }, 320);
+}
+
+if (albumFotos.length <= 1) {
+  prevBtn.hidden = true;
+  nextBtn.hidden = true;
+}
 
 function createFloatingHeart(index) {
   const heart = document.createElement("span");
@@ -39,7 +115,24 @@ function createFloatingHeart(index) {
 
 Array.from({ length: 30 }, (_, index) => createFloatingHeart(index));
 
+function tocarMusica() {
+  if (!bgMusic) return;
+
+  bgMusic.volume = 0.65;
+  bgMusic.play().catch(() => {});
+}
+
 openButton.addEventListener("click", () => {
+  tocarMusica();
   intro.classList.add("is-hidden");
   surprise.classList.add("is-visible");
+
+  window.setTimeout(() => {
+    surprise.classList.add("is-open");
+    personPhoto.classList.add("is-changing");
+  }, 450);
 });
+
+prevBtn.addEventListener("click", () => trocarFoto(-1));
+nextBtn.addEventListener("click", () => trocarFoto(1));
+

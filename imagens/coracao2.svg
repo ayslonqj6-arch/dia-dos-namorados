@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 900" role="img" aria-label="Coracao vermelho com luz dourada">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="42%" r="70%">
+      <stop offset="0" stop-color="#5c1232"/>
+      <stop offset=".62" stop-color="#220814"/>
+      <stop offset="1" stop-color="#12060f"/>
+    </radialGradient>
+    <linearGradient id="heart" x1=".18" x2=".86" y1=".08" y2=".9">
+      <stop offset="0" stop-color="#ffd1dc"/>
+      <stop offset=".42" stop-color="#ff4f86"/>
+      <stop offset="1" stop-color="#b80f4d"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="900" fill="url(#bg)"/>
+  <g opacity=".42" fill="#ffd166">
+    <circle cx="154" cy="192" r="4"/>
+    <circle cx="232" cy="278" r="3"/>
+    <circle cx="762" cy="258" r="5"/>
+    <circle cx="702" cy="636" r="4"/>
+    <circle cx="186" cy="676" r="5"/>
+    <circle cx="602" cy="140" r="3"/>
+  </g>
+  <path fill="url(#heart)" d="M450 742C252 579 128 460 128 316c0-90 68-160 158-160 64 0 123 37 164 98 41-61 100-98 164-98 90 0 158 70 158 160 0 144-124 263-322 426Z"/>
+  <path fill="#fff" opacity=".22" d="M290 236c-54 0-96 42-96 96 0 22 8 43 18 60 16-72 70-118 147-112-16-27-40-44-69-44Z"/>
+  <path fill="none" stroke="#ffd166" stroke-width="10" stroke-linecap="round" opacity=".5" d="M328 728c78 42 166 43 246 0"/>
+</svg>
