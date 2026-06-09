@@ -21,23 +21,23 @@ const nextBtn = document.querySelector("#nextBtn");
 
 const fotos = [
   {
-    foto: "imagens/foto1.webp",
-    mensagem: "Cada detalhe seu deixa meu mundo mais bonito e meu coracao mais em paz.",
+    foto: "imagens/foto Casal1.jpg",
+    mensagem: "",
   },
   {
-    foto: "imagens/foto1.webp",
+    foto: "imagens/foto Casal2.jpg",
     mensagem: "Meu carinho por voce cresce nos pequenos momentos, nos sorrisos e nos sonhos que a gente guarda.",
   },
   {
-    foto: "imagens/foto1.webp",
+    foto: "imagens/foto Casal3.jpg",
     mensagem: "Voce e aquele amor que ilumina ate os dias mais simples, como se tudo ganhasse um brilho novo.",
   },
   {
-    foto: "imagens/foto1.webp",
+    foto: "imagens/Foto Esposa.jpg",
     mensagem: "Se eu pudesse escrever uma cartinha todos os dias, em todas elas teria o mesmo segredo: eu amo voce.",
   },
   {
-    foto: "imagens/foto1.webp",
+    foto: "imagens/Foto Marido.jpg",
     mensagem: "Nosso amor tem esse jeitinho de abraco demorado: acolhe, acalma e faz o coracao sorrir.",
   },
 ];
